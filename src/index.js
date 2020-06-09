@@ -133,7 +133,7 @@ function cellClickAction (e)
 	
 	if (checkWin(cur_cell_element))
 	 {
-	 	let alert_text = player_1_turn ? "Player 1 won!" : "Player 2 won";
+	 	let alert_text = player_1_turn ? "Player 1 won!" : "Player 2 won!";
 		alert(alert_text);	 
 	 }
 	
