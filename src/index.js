@@ -2,22 +2,39 @@ import "./styles.css";
 
 
 
-
-
 const rows = 5;
 const cols = 5;
 const win_condition = 5;
 var player_1_turn = 1;
-
+var time_left = 10.0;
 
 drawBoard();
+
+setInterval(gameLoop, 10);
+
+function gameLoop()
+{
+	
+		if (time_left <= 0.0) 
+		{
+			player_1_turn = !player_1_turn;
+			time_left = 10.0;
+		}
+		else 
+		 {
+			time_left -= 0.01;
+	  	 }
+		let p_bar = document.getElementById("progress-bar");
+		p_bar.style.width = time_left/0.1 + "%";
+		
+}
+
 
 function drawBoard()
 {
 	// get container
 	let board_element = document.getElementById("board");
-  let i;
-  let j;
+	
 	// create child divs
 	for (i = 0; i < rows; i++)
 	 {
@@ -26,11 +43,7 @@ function drawBoard()
 			for (j = 0; j < cols; j++)
 			 {
 				let cell_element = document.createElement("TD");
-				//let cell_text = document.createTextNode("");
-				//cell_element.appendChild(cell_text);
-				cell_element.style.border = "1px solid black";
-				cell_element.style.width = "50px";
-				cell_element.style.height = "50px";
+				cell_element.classList.add("cell");
 				cell_element.addEventListener('click', cellClickAction, {once : true});
 				row_element.appendChild(cell_element);
 			 }
@@ -39,9 +52,7 @@ function drawBoard()
 
 function getCellIndex(cur_cell_element)
 {
-  let board_element = document.getElementById("board");
-  let i;
-  let j;
+	let board_element = document.getElementById("board");
 	for (i = 0; i < rows; i++)
 	 {
 	 	let row_element = board_element.childNodes[i];
@@ -115,10 +126,12 @@ function drawSymbol(cell_element)
 	if (player_1_turn)
 	 {
 		cell_element.innerHTML = "x";
+		cell_element.classList.add("x");
 	 }
 	else 
 	 {
 		cell_element.innerHTML = "o";	 
+		cell_element.classList.add("o");
 	 }
 }
 
@@ -133,14 +146,17 @@ function cellClickAction (e)
 	
 	if (checkWin(cur_cell_element))
 	 {
-	 	let alert_text = player_1_turn ? "Player 1 won!" : "Player 2 won!";
+	 	let alert_text = player_1_turn ? "Player 1 won!" : "Player 2 won";
 		alert(alert_text);	 
 	 }
 	
 		
 	// change turn
 	player_1_turn = !player_1_turn;
+	time_left = 10.0;
 }
+
+
 
 	
 
