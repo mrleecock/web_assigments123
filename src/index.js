@@ -1,7 +1,5 @@
 import "./styles.css";
 
-
-
 const rows = 5;
 const cols = 5;
 const win_condition = 5;
@@ -35,11 +33,13 @@ function drawBoard()
 	// get container
 	let board_element = document.getElementById("board");
 	
-	// create child divs
+  // create child divs
+  let i;
 	for (i = 0; i < rows; i++)
 	 {
 	 	let row_element = document.createElement("TR");
-	 	board_element.appendChild(row_element);
+     board_element.appendChild(row_element);
+     let j;
 			for (j = 0; j < cols; j++)
 			 {
 				let cell_element = document.createElement("TD");
@@ -52,10 +52,12 @@ function drawBoard()
 
 function getCellIndex(cur_cell_element)
 {
-	let board_element = document.getElementById("board");
+  let board_element = document.getElementById("board");
+  let i;
 	for (i = 0; i < rows; i++)
 	 {
-	 	let row_element = board_element.childNodes[i];
+     let row_element = board_element.childNodes[i];
+     let j;
 		for (j = 0; j < cols; j++)
 		 {
 			if (row_element.childNodes[j] == cur_cell_element)
@@ -155,8 +157,4 @@ function cellClickAction (e)
 	player_1_turn = !player_1_turn;
 	time_left = 10.0;
 }
-
-
-
-	
 
