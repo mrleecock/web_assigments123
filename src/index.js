@@ -1,4 +1,4 @@
-import "./styles.css";
+//import "./styles.css";
 
 const rows = 5;
 const cols = 5;
@@ -37,13 +37,17 @@ function drawBoard()
   let i;
 	for (i = 0; i < rows; i++)
 	 {
-	 	let row_element = document.createElement("TR");
-     board_element.appendChild(row_element);
+	 	let row_element = document.createElement("DIV");
+	 	row_element.classList.add("row");
+		
+	 	board_element.appendChild(row_element);
      let j;
 			for (j = 0; j < cols; j++)
 			 {
-				let cell_element = document.createElement("TD");
-				cell_element.classList.add("cell");
+				let cell_element = document.createElement("DIV");
+				cell_element.classList.add("col");
+				cell_element.classList.add("s1");
+				
 				cell_element.addEventListener('click', cellClickAction, {once : true});
 				row_element.appendChild(cell_element);
 			 }
